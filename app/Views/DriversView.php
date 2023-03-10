@@ -26,17 +26,19 @@ class DriversView {
             </tr>
             <?php
             foreach ($drivers as $driver) {
-                $team = $db->prepare("SELECT name FROM teams WHERE id=:id");
+                $team = $this->model->getDriverTeam($driver['team_id']);
+
+/*                $team = $db->prepare("SELECT name FROM teams WHERE id=:id");
                 $team->execute([
                     'id'=>$driver['team_id']
                 ]);
-                $resultTeam = $team->fetch()['name'];
+                $resultTeam = $team->fetch()['name'];*/
                 ?>
                 <tr>
                     <td><?= $driver['name']?></td>
                     <td><?= $driver['nationality']?></td>
                     <td><?= $driver['date_of_birth']?></td>
-                    <td><?= $resultTeam?></td>
+                    <td><?= $team?></td>
                     <td><?= $driver['car_number']?></td>
                 </tr>
             <?php }
