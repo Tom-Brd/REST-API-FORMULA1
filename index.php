@@ -3,7 +3,7 @@ include_once 'app/Views/header.php';
 
 $path = $_SERVER["REQUEST_URI"];
 
-if ($path === "/") {
+if ($path === "/qREST-API-FORMULA1/") {
     echo "Voici la page d'accueil";
 }
 elseif ($path === "/REST-API-FORMULA1/circuits") {
