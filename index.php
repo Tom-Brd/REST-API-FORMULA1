@@ -3,7 +3,10 @@ include_once 'app/Views/header.php';
 
 $path = $_SERVER["REQUEST_URI"];
 
-if ($path === "/REST-API-FORMULA1/circuits") {
+if ($path === "/") {
+    echo "Voici la page d'accueil";
+}
+elseif ($path === "/REST-API-FORMULA1/circuits") {
     require_once('app/Controllers/CircuitsController.php');
     $circuitsController = new CircuitsController();
     $circuitsController->show();
