@@ -9,3 +9,19 @@ function database(){
     }
     return $pdo;
 }
+
+function isGetMethode() {
+    return $_SERVER["REQUEST_METHOD"] === "GET";
+}
+
+function isPostMethode() {
+    return $_SERVER["REQUEST_METHOD"] === "POST";
+}
+
+function isPutMethode() {
+    return $_SERVER["REQUEST_METHOD"] === "PUT";
+}
+
+function isDeleteMethode() {
+    return $_SERVER["REQUEST_METHOD"] === "DELETE";
+}
