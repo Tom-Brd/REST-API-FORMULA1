@@ -16,4 +16,12 @@ class TeamsModel {
         return json_encode($teams->fetchAll());
     }
 
+    public function getTeam(int $id) {
+        $team = $this->db->prepare("SELECT * FROM teams WHERE id=:id");
+        $team->execute([
+            'id'=>$id
+        ]);
+        return json_encode($team->fetch());
+    }
+
 }

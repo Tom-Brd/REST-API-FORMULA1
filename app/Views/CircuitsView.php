@@ -37,5 +37,11 @@ class CircuitsView {
     </table>
 <?php
     }
+
+    public function showCircuit(int $id) {
+        $circuit = json_decode($this->model->getCircuit($id), true);
+        echo $circuit['name'];
+    }
+
 }
 ?>

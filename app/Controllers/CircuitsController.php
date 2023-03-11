@@ -12,4 +12,12 @@ class CircuitsController {
         $circuitView = new CircuitsView($circuitModel);
         $circuitView->show($circuits);
     }
+
+    public function showCircuit(int $id) {
+        $db = database();
+        $circuitModel = new CircuitsModel($db);
+        $circuit = json_decode($circuitModel->getCircuit($id), true);
+        $circuitView = new CircuitsView($circuitModel);
+        $circuitView->showCircuit($circuit['id']);
+    }
 }

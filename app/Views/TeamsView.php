@@ -37,5 +37,10 @@ class TeamsView {
     </table>
 <?php
     }
+
+    public function showTeam(int $id) {
+        $team = json_decode($this->model->getTeam($id), true);
+        echo $team['name'];
+    }
 }
 ?>

@@ -40,5 +40,10 @@ class DriversView {
     </table>
 <?php
     }
+
+    public function showDriver(int $id) {
+        $driver = json_decode($this->model->getDriver($id), true);
+        echo $driver['name'];
+    }
 }
 ?>

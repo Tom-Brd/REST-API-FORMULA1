@@ -12,4 +12,12 @@ class DriversController {
         $driverView = new DriversView($driverModel);
         $driverView->show($drivers);
     }
+
+    public function showDriver(int $id) {
+        $db = database();
+        $driverModel = new DriversModel($db);
+        $circuit = json_decode($driverModel->getDriver($id), true);
+        $driverView = new DriversView($driverModel);
+        $driverView->showDriver($circuit['id']);
+    }
 }
