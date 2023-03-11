@@ -51,3 +51,12 @@ function isPath(string $route): bool {
 
     return true;
 }
+
+function extractPathParam(): int {
+    $path = $_SERVER['REQUEST_URI'];
+    $pathSeparatorPattern = "#/#";
+
+    $pathParts = explode('/', trim($path, '/'));
+    echo $pathParts[3];
+    return intval($pathParts[3]);
+}
