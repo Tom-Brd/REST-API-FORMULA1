@@ -13,7 +13,7 @@ class TeamsView {
     }
 
     public function show() {
-        $teams = $this->model->getTeams();
+        $teams = json_decode($this->model->getTeams(), true);
         ?>
         <h1>Teams</h1>
         <table>
@@ -25,16 +25,16 @@ class TeamsView {
             </tr>
             <?php
             foreach ($teams as $team) {
-                ?>
-                <tr>
-                    <td><?= $team['name']?></td>
-                    <td><?= $team['country']?></td>
-                    <td><?= $team['team_principal']?></td>
-                    <td><?= $team['year_of_creation']?></td>
-                </tr>
-            <?php }
             ?>
-        </table>
+            <tr>
+                <td><?= $team['name']?></td>
+                <td><?= $team['country']?></td>
+                <td><?= $team['team_principal']?></td>
+                <td><?= $team['year_of_creation']?></td>
+            </tr>
+        <?php }
+        ?>
+    </table>
 <?php
     }
 }

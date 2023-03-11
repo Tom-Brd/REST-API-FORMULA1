@@ -13,7 +13,7 @@ class DriversView {
     }
 
     public function show() {
-        $drivers = $this->model->getDrivers();
+        $drivers = json_decode($this->model->getDrivers(), true);
         ?>
         <h1>Drivers</h1>
         <table>
@@ -26,24 +26,18 @@ class DriversView {
             </tr>
             <?php
             foreach ($drivers as $driver) {
-                $team = $this->model->getDriverTeam($driver['team_id']);
-
-/*                $team = $db->prepare("SELECT name FROM teams WHERE id=:id");
-                $team->execute([
-                    'id'=>$driver['team_id']
-                ]);
-                $resultTeam = $team->fetch()['name'];*/
-                ?>
-                <tr>
-                    <td><?= $driver['name']?></td>
-                    <td><?= $driver['nationality']?></td>
-                    <td><?= $driver['date_of_birth']?></td>
-                    <td><?= $team?></td>
-                    <td><?= $driver['car_number']?></td>
-                </tr>
-            <?php }
+                $team = json_decode($this->model->getDriverTeam($driver['team_id']), true);
             ?>
-        </table>
+            <tr>
+                <td><?= $driver['name']?></td>
+                <td><?= $driver['nationality']?></td>
+                <td><?= $driver['date_of_birth']?></td>
+                <td><?= $team?></td>
+                <td><?= $driver['car_number']?></td>
+            </tr>
+        <?php }
+        ?>
+    </table>
 <?php
     }
 }
