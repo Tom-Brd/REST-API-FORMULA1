@@ -13,7 +13,7 @@ class TeamsModel {
 
     public function getTeams() {
         $teams = $this->db->query("SELECT * FROM teams");
-        return $teams->fetchAll();
+        return json_encode($teams->fetchAll());
     }
 
 }

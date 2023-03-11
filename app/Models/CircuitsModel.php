@@ -13,7 +13,7 @@ class CircuitsModel {
 
     public function getCircuits() {
         $circuits = $this->db->query("SELECT * FROM circuits");
-        return $circuits->fetchAll();
+        return json_encode($circuits->fetchAll());
     }
 
 }

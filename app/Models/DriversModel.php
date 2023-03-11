@@ -15,7 +15,7 @@ class DriversModel
     public function getDrivers()
     {
         $drivers = $this->db->query("SELECT * FROM drivers");
-        return $drivers->fetchAll();
+        return json_encode($drivers->fetchAll());
     }
 
     public function getDriverTeam(int $id)
@@ -25,6 +25,6 @@ class DriversModel
             'id' => $id
         ]);
 
-        return $team->fetch()['name'];
+        return json_encode($team->fetch()['name']);
     }
 }
