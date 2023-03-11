@@ -5,7 +5,7 @@ $path = $_SERVER["REQUEST_URI"];
 
 if (isGetMethode()) {
     if (isPath("/")) {
-        echo "Voici la page d'accueil";
+        require_once('app/Views/home.php');
         die();
     } elseif (isPath("show/circuits")) {
         require_once('app/Controllers/CircuitsController.php');
@@ -14,7 +14,6 @@ if (isGetMethode()) {
         die();
     } elseif (isPath("show/circuits/:circuit")) {
         $id = extractPathParam();
-        var_dump($id);
         require_once('app/Controllers/CircuitsController.php');
         $circuitController = new CircuitsController();
         $circuitController->showCircuit(intval($id));
