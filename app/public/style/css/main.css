@@ -102,6 +102,21 @@ body {
   animation: moveInBottom .5s ease-in-out .5s;
   animation-fill-mode: backwards; }
 
+.api {
+  background-color: red; }
+  .api__table {
+    border-collapse: collapse;
+    width: 100%; }
+    .api__table th, .api__table td {
+      border: 1px solid #111;
+      padding: .8rem;
+      text-align: left; }
+    .api__table th {
+      background-color: #4CAF50;
+      color: white; }
+    .api__table tr:nth-child(even) {
+      background-color: #f2f2f2; }
+
 @keyframes moveInLeft {
   0% {
     opacity: 0;
