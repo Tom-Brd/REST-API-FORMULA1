@@ -54,8 +54,6 @@ class FormulaService {
             'team_id'=>$requestDto['team_id'],
             'car_number'=>$requestDto['car_number'],
         ]);
-
-
     }
 
 }
