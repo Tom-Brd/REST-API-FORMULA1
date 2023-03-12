@@ -37,6 +37,7 @@ if (isPath("/drivers/create")) {
         $formulaService->createDriver($requestDto);
         die();
     } else http_response_code(405);
+}
 
 if (isPath("/drivers/delete/:delete")) {
     if (isDeleteMethod()) {
