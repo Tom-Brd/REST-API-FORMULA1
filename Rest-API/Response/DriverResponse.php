@@ -1,6 +1,6 @@
 <?php
 
-class DriverEntity implements JsonSerializable {
+class DriverResponse implements JsonSerializable {
     private $id;
     private $name;
     private $nationality;

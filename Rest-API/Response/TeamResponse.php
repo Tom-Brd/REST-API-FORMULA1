@@ -1,6 +1,6 @@
 <?php
 
-class TeamEntity implements JsonSerializable {
+class TeamResponse implements JsonSerializable {
     private $id;
     private $name;
     private $country;

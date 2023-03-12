@@ -52,8 +52,16 @@ function isPath(string $route): bool {
     return true;
 }
 
-function extractPathParam(): int {
+function extractPathParam() :int {
     $path = $_SERVER['REQUEST_URI'];
     $pathParts = explode('/', trim($path, '/'));
     return intval($pathParts[count($pathParts)-1]);
+}
+
+function handleDbFailure(bool|array $dbResult) :bool {
+    if (!$dbResult) {
+        http_response_code(500);
+        return true;
+    }
+    return false;
 }

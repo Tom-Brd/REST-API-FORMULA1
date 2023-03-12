@@ -1,6 +1,6 @@
 <?php
 
-class CircuitEntity implements JsonSerializable {
+class CircuitResponse implements JsonSerializable {
     private $id;
     private $name;
     private $country;
