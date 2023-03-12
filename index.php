@@ -11,6 +11,10 @@ $teamService = new TeamService();
 $driverService = new DriverService();
 $circuitService = new CircuitService();
 
+if (isPath("/")) {
+    header("Location: app/Views/home.html");
+    die();
+}
 
 if (isPath("/drivers")) {
     if (isGetMethod()) {
