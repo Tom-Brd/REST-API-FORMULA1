@@ -18,8 +18,8 @@ function isPostMethod() {
     return $_SERVER["REQUEST_METHOD"] === "POST";
 }
 
-function isPutMethod() {
-    return $_SERVER["REQUEST_METHOD"] === "PUT";
+function isPatchMethod() {
+    return $_SERVER["REQUEST_METHOD"] === "PATCH";
 }
 
 function isDeleteMethod() {

@@ -49,9 +49,38 @@ if (isPath("/drivers/delete/:delete")) {
     } else http_response_code(405);
 }
 
+if (isPath("/drivers/update/:update")) {
+    if (isPatchMethod()) {
+        $id = extractPathParam();
+        $requestBody = file_get_contents('php://input');
+        $requestDto = json_decode($requestBody, true);
+        $formulaService->updateDriver($id, $requestDto);
+        echo "Driver updated";
+        die();
+    } else http_response_code(405);
+}
 
+if (isPath("/circuits/update/:update")) {
+    if (isPatchMethod()) {
+        $id = extractPathParam();
+        $requestBody = file_get_contents('php://input');
+        $requestDto = json_decode($requestBody, true);
+        $formulaService->updateCircuit($id, $requestDto);
+        echo "Circuit updated";
+        die();
+    } else http_response_code(405);
+}
 
-
+if (isPath("/teams/update/:update")) {
+    if (isPatchMethod()) {
+        $id = extractPathParam();
+        $requestBody = file_get_contents('php://input');
+        $requestDto = json_decode($requestBody, true);
+        $formulaService->updateTeam($id, $requestDto);
+        echo "Team updated";
+        die();
+    } else http_response_code(405);
+}
 
 
 /*

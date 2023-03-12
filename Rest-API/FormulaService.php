@@ -52,7 +52,7 @@ class FormulaService {
             'nationality'=>$requestDto['nationality'],
             'date_of_birth'=>$requestDto['date_of_birth'],
             'team_id'=>$requestDto['team_id'],
-            'car_number'=>$requestDto['car_number'],
+            'car_number'=>$requestDto['car_number']
         ]);
     }
 
@@ -61,9 +61,41 @@ class FormulaService {
         $deleteDriver->execute([
             'id'=>$id
         ]);
+    }
 
-        $updateIds = $this->db->prepare("UPDATE drivers SET id= id - 1 WHERE id>=:id");
-        $updateIds->execute([
+    public function updateDriver(int $id, array $requestDto) {
+        $updateDriver = $this->db->prepare("UPDATE drivers SET 
+               name=:name, nationality=:nationality, date_of_birth=:date_of_birth, team_id=:team_id, car_number=:car_number WHERE id=:id");
+        $updateDriver->execute([
+            'name'=>$requestDto['name'],
+            'nationality'=>$requestDto['nationality'],
+            'date_of_birth'=>$requestDto['date_of_birth'],
+            'team_id'=>$requestDto['team_id'],
+            'car_number'=>$requestDto['car_number'],
+            'id'=>$id
+        ]);
+    }
+
+    public function updateCircuit(int $id, array $requestDto) {
+        $updateDriver = $this->db->prepare("UPDATE circuits SET 
+               name=:name, country=:country, length=:length, number_of_turns=:number_of_turns WHERE id=:id");
+        $updateDriver->execute([
+            'name'=>$requestDto['name'],
+            'country'=>$requestDto['country'],
+            'length'=>$requestDto['length'],
+            'number_of_turns'=>$requestDto['number_of_turns'],
+            'id'=>$id
+        ]);
+    }
+
+    public function updateTeam(int $id, array $requestDto) {
+        $updateDriver = $this->db->prepare("UPDATE teams SET 
+               name=:name, country=:country, team_principal=:team_principal, year_of_creation=:year_of_creation WHERE id=:id");
+        $updateDriver->execute([
+            'name'=>$requestDto['name'],
+            'country'=>$requestDto['country'],
+            'team_principal'=>$requestDto['team_principal'],
+            'year_of_creation'=>$requestDto['year_of_creation'],
             'id'=>$id
         ]);
     }

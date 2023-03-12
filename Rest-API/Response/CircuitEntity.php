@@ -1,7 +1,6 @@
 <?php
 
-class CircuitEntity
-{
+class CircuitEntity implements JsonSerializable {
     private $id;
     private $name;
     private $country;
@@ -22,6 +21,16 @@ class CircuitEntity
         $this->country = $country;
         $this->length = $length;
         $this->numberOfTurns = $numberOfTurns;
+    }
+
+    public function jsonSerialize() :mixed {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'country' => $this->country,
+            'length' => $this->length,
+            'numberOfTurns' => $this->numberOfTurns
+        ];
     }
 
 }
