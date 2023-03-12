@@ -30,6 +30,40 @@ if (isPath("/drivers/show/:driver")) {
     die();
 }
 
+if (isPath("/circuits")) {
+    if (isGetMethod()) {
+        header("Content-Type: application/json");
+        echo $formulaService->getCircuits();
+    } else http_response_code(405);
+    die();
+}
+
+if (isPath("/circuits/show/:driver")) {
+    if (isGetMethod()) {
+        $id = extractPathParam();
+        header("Content-Type: application/json");
+        echo $formulaService->getCircuit($id);
+    } else http_response_code(405);
+    die();
+}
+
+if (isPath("/teams")) {
+    if (isGetMethod()) {
+        header("Content-Type: application/json");
+        echo $formulaService->getTeams();
+    } else http_response_code(405);
+    die();
+}
+
+if (isPath("/teams/show/:driver")) {
+    if (isGetMethod()) {
+        $id = extractPathParam();
+        header("Content-Type: application/json");
+        echo $formulaService->getTeam($id);
+    } else http_response_code(405);
+    die();
+}
+
 if (isPath("/drivers/create")) {
     if (isPostMethod()) {
         $requestBody = file_get_contents('php://input');
