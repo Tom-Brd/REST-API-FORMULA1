@@ -102,6 +102,30 @@ class FormulaService {
         ]);
     }
 
+    public function createCircuit(array $requestDto) {
+        $circuit = $this->db->prepare("INSERT INTO circuits
+            (name, country, length, number_of_turns)
+            VALUES (:name, :country, :length, :number_of_turns)");
+        $circuit->execute([
+            'name'=>$requestDto['name'],
+            'country'=>$requestDto['country'],
+            'length'=>$requestDto['length'],
+            'number_of_turns'=>$requestDto['number_of_turns']
+        ]);
+    }
+
+    public function createTeam(array $requestDto) {
+        $circuit = $this->db->prepare("INSERT INTO teams
+            (name, country, team_principal, year_of_creation)
+            VALUES (:name, :country, :team_principal, :year_of_creation)");
+        $circuit->execute([
+            'name'=>$requestDto['name'],
+            'country'=>$requestDto['country'],
+            'team_principal'=>$requestDto['team_principal'],
+            'year_of_creation'=>$requestDto['year_of_creation']
+        ]);
+    }
+
     public function deleteDriver(int $id) {
         $deleteDriver = $this->db->prepare("DELETE FROM drivers WHERE id=:id");
         $deleteDriver->execute([
