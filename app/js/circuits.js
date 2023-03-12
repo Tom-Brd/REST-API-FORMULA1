@@ -8,15 +8,15 @@ function getCircuits() {
                 let circuitListName = document.createElement('td');
                 circuitListName.textContent = `${circuit.name}`;
                 circuitsList.appendChild(circuitListName);
-                let circuitListNationality = document.createElement('td');
-                circuitListNationality.textContent = `${circuit.country}`;
-                circuitsList.appendChild(circuitListNationality);
-                let circuitListDateOfBirth = document.createElement('td');
-                circuitListDateOfBirth.textContent = `${circuit.length}`;
-                circuitsList.appendChild(circuitListDateOfBirth);
-                let circuitListTeam = document.createElement('td');
-                circuitListTeam.textContent = `${circuit.numberOfTurns}`;
-                circuitsList.appendChild(circuitListTeam);
+                let circuitListCountry = document.createElement('td');
+                circuitListCountry.textContent = `${circuit.country}`;
+                circuitsList.appendChild(circuitListCountry);
+                let circuitListLength = document.createElement('td');
+                circuitListLength.textContent = `${circuit.length}`;
+                circuitsList.appendChild(circuitListLength);
+                let circuitListNumberOfTurns = document.createElement('td');
+                circuitListNumberOfTurns.textContent = `${circuit.numberOfTurns}`;
+                circuitsList.appendChild(circuitListNumberOfTurns);
                 circuitsTable.appendChild(circuitsList);
             });
         })
