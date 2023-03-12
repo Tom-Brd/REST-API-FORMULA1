@@ -43,6 +43,52 @@ class FormulaService {
         return $team->fetch()['name'];
     }
 
+    public function getCircuits()
+    {
+        require_once 'Response/CircuitEntity.php';
+        $circuits = $this->db->query("SELECT * FROM circuits");
+        $dbResult = $circuits->fetchAll();
+        $circuitsArray = [];
+        foreach ($dbResult as $circuitEntity) {
+            $circuitsArray[] = new CircuitEntity($circuitEntity['id'], $circuitEntity['name'], $circuitEntity['country'], $circuitEntity['length'], $circuitEntity['number_of_turns']);
+        }
+        return json_encode($circuitsArray);
+    }
+
+    public function getCircuit($id)
+    {
+        require_once 'Response/CircuitEntity.php';
+        $circuit = $this->db->prepare("SELECT * FROM circuits WHERE id=:id");
+        $circuit->execute([
+            'id'=>$id
+        ]);
+        $dbResult = $circuit->fetch();
+        return json_encode(new CircuitEntity($dbResult['id'], $dbResult['name'], $dbResult['country'], $dbResult['length'], $dbResult['number_of_turns']));
+    }
+
+    public function getTeams()
+    {
+        require_once 'Response/TeamEntity.php';
+        $teams = $this->db->query("SELECT * FROM teams");
+        $dbResult = $teams->fetchAll();
+        $teamsArray = [];
+        foreach ($dbResult as $teamEntity) {
+            $teamsArray[] = new TeamEntity($teamEntity['id'], $teamEntity['name'], $teamEntity['country'], $teamEntity['team_principal'], $teamEntity['year_of_creation']);
+        }
+        return json_encode($teamsArray);
+    }
+
+    public function getTeam($id)
+    {
+        require_once 'Response/TeamEntity.php';
+        $team = $this->db->prepare("SELECT * FROM teams WHERE id=:id");
+        $team->execute([
+            'id'=>$id
+        ]);
+        $dbResult = $team->fetch();
+        return json_encode(new TeamEntity($dbResult['id'], $dbResult['name'], $dbResult['country'], $dbResult['team_principal'], $dbResult['year_of_creation']));
+    }
+
     public function createDriver(array $requestDto) {
         $driver = $this->db->prepare("INSERT INTO drivers
             (name, nationality, date_of_birth, team_id, car_number)
