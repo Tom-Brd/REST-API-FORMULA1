@@ -74,6 +74,26 @@ if (isPath("/drivers/create")) {
     } else http_response_code(405);
 }
 
+if (isPath("/circuits/create")) {
+    if (isPostMethod()) {
+        $requestBody = file_get_contents('php://input');
+        $requestDto = json_decode($requestBody, true);
+        $formulaService->createCircuit($requestDto);
+        echo "Circuit created";
+        die();
+    } else http_response_code(405);
+}
+
+if (isPath("/teams/create")) {
+    if (isPostMethod()) {
+        $requestBody = file_get_contents('php://input');
+        $requestDto = json_decode($requestBody, true);
+        $formulaService->createTeam($requestDto);
+        echo "Team created";
+        die();
+    } else http_response_code(405);
+}
+
 if (isPath("/drivers/delete/:delete")) {
     if (isDeleteMethod()) {
         $id = extractPathParam();
