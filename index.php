@@ -103,6 +103,24 @@ if (isPath("/drivers/delete/:delete")) {
     } else http_response_code(405);
 }
 
+if (isPath("/circuits/delete/:delete")) {
+    if (isDeleteMethod()) {
+        $id = extractPathParam();
+        $formulaService->deleteCircuit($id);
+        echo "Circuit deleted";
+        die();
+    } else http_response_code(405);
+}
+
+if (isPath("/teams/delete/:delete")) {
+    if (isDeleteMethod()) {
+        $id = extractPathParam();
+        $formulaService->deleteTeam($id);
+        echo "Team deleted";
+        die();
+    } else http_response_code(405);
+}
+
 if (isPath("/drivers/update/:update")) {
     if (isPatchMethod()) {
         $id = extractPathParam();

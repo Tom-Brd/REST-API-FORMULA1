@@ -133,6 +133,20 @@ class FormulaService {
         ]);
     }
 
+    public function deleteCircuit(int $id) {
+        $deleteDriver = $this->db->prepare("DELETE FROM circuits WHERE id=:id");
+        $deleteDriver->execute([
+            'id'=>$id
+        ]);
+    }
+
+    public function deleteTeam(int $id) {
+        $deleteDriver = $this->db->prepare("DELETE FROM teams WHERE id=:id");
+        $deleteDriver->execute([
+            'id'=>$id
+        ]);
+    }
+
     public function updateDriver(int $id, array $requestDto) {
         $updateDriver = $this->db->prepare("UPDATE drivers SET 
                name=:name, nationality=:nationality, date_of_birth=:date_of_birth, team_id=:team_id, car_number=:car_number WHERE id=:id");
