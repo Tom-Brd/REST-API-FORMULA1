@@ -11,9 +11,15 @@ function getDrivers() {
                 let driverListNationality = document.createElement('td');
                 driverListNationality.textContent = `${driver.nationality}`;
                 driversList.appendChild(driverListNationality);
+                let driverListDateOfBirth = document.createElement('td');
+                driverListDateOfBirth.textContent = `${driver.dateOfBirth}`;
+                driversList.appendChild(driverListDateOfBirth);
                 let driverListTeam = document.createElement('td');
                 driverListTeam.textContent = `${driver.team_name}`;
                 driversList.appendChild(driverListTeam);
+                let driverListCarNumber = document.createElement('td');
+                driverListCarNumber.textContent = `${driver.carNumber}`;
+                driversList.appendChild(driverListCarNumber);
                 driversTable.appendChild(driversList);
             });
         })
