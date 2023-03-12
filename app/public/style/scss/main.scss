@@ -1,0 +1,188 @@
+$color-grey-dark: #222;
+$color-white: #fff;
+$color-dark: #111;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  height: 95vh;
+  background-image: linear-gradient(
+                  to bottom,
+                  rgba($color-grey-dark, 0.8),
+                  rgba($color-dark, 0.9));
+  &__logo {
+    height: 260px;
+    animation: moveInUp .75s ease-in-out;
+    &-box {
+      display: flex;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 50%);
+    }
+  }
+
+  &__text-box {
+    position: absolute;
+    width: 60vw;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    text-align: center;
+  }
+
+  &__btn-box {
+    display: flex;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    text-align: center;
+  }
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+
+  &--main {
+    display: block;
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: 35px;
+    animation: moveInLeft 1s ease-in-out;
+  }
+
+  &--sub {
+    display: block;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 18px;
+    animation: moveInRight 1s ease-in-out;
+  }
+}
+
+.btn:link,
+.btn:visited {
+  position: relative;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 100px;
+  transition: all .2s;
+  margin: 20px;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .4);
+}
+
+.btn--white {
+  display: inline-block;
+  background-color: $color-white;
+  color: $color-grey-dark;
+  padding: 15px 40px;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn--white::after {
+  background-color: $color-white;
+}
+
+.btn--animated {
+  animation: moveInBottom .5s ease-in-out .5s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}

@@ -10,18 +10,50 @@ function database(){
     return $pdo;
 }
 
-function isGetMethode() {
+function isGetMethod() {
     return $_SERVER["REQUEST_METHOD"] === "GET";
 }
 
-function isPostMethode() {
+function isPostMethod() {
     return $_SERVER["REQUEST_METHOD"] === "POST";
 }
 
-function isPutMethode() {
+function isPutMethod() {
     return $_SERVER["REQUEST_METHOD"] === "PUT";
 }
 
-function isDeleteMethode() {
+function isDeleteMethod() {
     return $_SERVER["REQUEST_METHOD"] === "DELETE";
+}
+
+function isPath(string $route): bool {
+    $path = $_SERVER['REQUEST_URI'];
+    $pathSeparatorPattern = "#/#";
+
+    $routeParts = preg_split($pathSeparatorPattern, str_replace( "REST-API-FORMULA1/",'',$route));
+    $pathParts = preg_split($pathSeparatorPattern, str_replace( "REST-API-FORMULA1/",'',$path));
+
+    if (count($routeParts) !== count($pathParts)) {
+        return false;
+    }
+
+    foreach ($routeParts as $routePartIndex => $routePart) {
+        $pathPart = $pathParts[$routePartIndex];
+
+        if (str_starts_with($routePart, ":")) {
+            continue;
+        }
+
+        if ($routePart !== $pathPart) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function extractPathParam(): int {
+    $path = $_SERVER['REQUEST_URI'];
+    $pathParts = explode('/', trim($path, '/'));
+    return intval($pathParts[count($pathParts)-1]);
 }
