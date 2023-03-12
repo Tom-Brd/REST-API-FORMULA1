@@ -43,5 +43,18 @@ class FormulaService {
         return $team->fetch()['name'];
     }
 
+    public function createDriver(array $requestDto) {
+        $driver = $this->db->prepare("INSERT INTO drivers
+            (name, nationality, date_of_birth, team_id, car_number)
+            VALUES (:name, :nationality, :date_of_birth, :team_id, :car_number)");
+        $driver->execute([
+            'name'=>$requestDto['name'],
+            'nationality'=>$requestDto['nationality'],
+            'date_of_birth'=>$requestDto['date_of_birth'],
+            'team_id'=>$requestDto['team_id'],
+            'car_number'=>$requestDto['car_number'],
+        ]);
+    }
+
 }
 
