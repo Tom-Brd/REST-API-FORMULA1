@@ -13,8 +13,9 @@ class CircuitsView {
     }
 
     public function show() {
-        $circuits = json_decode($this->model->getCircuits(), true);
-        ?>
+        echo $this->model->getCircuits();
+        /*$circuits = json_decode($this->model->getCircuits(), true);
+        */?><!--
         <h1>Circuits</h1>
         <table>
             <tr>
@@ -24,17 +25,17 @@ class CircuitsView {
                 <th>Number of turns</th>
             </tr>
             <?php
-            foreach ($circuits as $circuit) {
-            ?>
+/*            foreach ($circuits as $circuit) {
+            */?>
             <tr>
-                <td><?= $circuit['name']?></td>
-                <td><?= $circuit['country']?></td>
-                <td><?= $circuit['length']?></td>
-                <td><?= $circuit['number_of_turns']?></td>
+                <td><?php /*= $circuit['name']*/?></td>
+                <td><?php /*= $circuit['country']*/?></td>
+                <td><?php /*= $circuit['length']*/?></td>
+                <td><?php /*= $circuit['number_of_turns']*/?></td>
             </tr>
-        <?php }
-        ?>
-    </table>
+        <?php /*}
+        */?>
+    </table>-->
 <?php
     }
 

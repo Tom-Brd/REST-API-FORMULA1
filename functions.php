@@ -10,19 +10,19 @@ function database(){
     return $pdo;
 }
 
-function isGetMethode() {
+function isGetMethod() {
     return $_SERVER["REQUEST_METHOD"] === "GET";
 }
 
-function isPostMethode() {
+function isPostMethod() {
     return $_SERVER["REQUEST_METHOD"] === "POST";
 }
 
-function isPutMethode() {
+function isPutMethod() {
     return $_SERVER["REQUEST_METHOD"] === "PUT";
 }
 
-function isDeleteMethode() {
+function isDeleteMethod() {
     return $_SERVER["REQUEST_METHOD"] === "DELETE";
 }
 
@@ -30,8 +30,8 @@ function isPath(string $route): bool {
     $path = $_SERVER['REQUEST_URI'];
     $pathSeparatorPattern = "#/#";
 
-    $routeParts = preg_split($pathSeparatorPattern, trim($route, "REST-API-FORMULA1/"));
-    $pathParts = preg_split($pathSeparatorPattern, trim($path, "REST-API-FORMULA1/"));
+    $routeParts = preg_split($pathSeparatorPattern, str_replace( "REST-API-FORMULA1/",'',$route));
+    $pathParts = preg_split($pathSeparatorPattern, str_replace( "REST-API-FORMULA1/",'',$path));
 
     if (count($routeParts) !== count($pathParts)) {
         return false;
@@ -54,9 +54,6 @@ function isPath(string $route): bool {
 
 function extractPathParam(): int {
     $path = $_SERVER['REQUEST_URI'];
-    $pathSeparatorPattern = "#/#";
-
     $pathParts = explode('/', trim($path, '/'));
-    echo $pathParts[3];
-    return intval($pathParts[3]);
+    return intval($pathParts[count($pathParts)-1]);
 }

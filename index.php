@@ -1,13 +1,59 @@
 <?php
-include_once 'app/Views/header.php';
+// FORMULA RESOURCE ENDPOINTS
 
 $path = $_SERVER["REQUEST_URI"];
+include_once 'functions.php';
+require_once 'Rest-API/FormulaService.php';
 
-if (isGetMethode()) {
-    if (isPath("/")) {
-        require_once('app/Views/home.php');
+$formulaService = new FormulaService();
+
+
+if (isPath("/")) {
+    echo "Page d'accueil";
+    die();
+}
+
+if (isPath("/drivers")) {
+    if (isGetMethod()) {
+        header("Content-Type: application/json");
+        echo $formulaService->getDrivers();
+    } else http_response_code(405);
+    die();
+}
+
+if (isPath("/drivers/show/:driver")) {
+    if (isGetMethod()) {
+        $id = extractPathParam();
+        header("Content-Type: application/json");
+        echo $formulaService->getDriver($id);
+    } else http_response_code(405);
+    die();
+}
+
+if (isPath("/drivers/create")) {
+    if (isPostMethod()) {
+        $requestBody = file_get_contents('php://input');
+        $requestDto = json_decode($requestBody, true);
+        $formulaService->createDriver($requestDto);
         die();
-    } elseif (isPath("show/circuits")) {
+    } else http_response_code(405);
+
+if (isPath("/drivers/delete/:delete")) {
+    if (isDeleteMethod()) {
+        $id = extractPathParam();
+        die();
+    } else http_response_code(405);
+}
+
+
+
+
+
+
+/*
+if (isGetMethod()) {
+
+    if (isPath("show/circuits")) {
         require_once('app/Controllers/CircuitsController.php');
         $circuitsController = new CircuitsController();
         $circuitsController->show();
@@ -42,11 +88,9 @@ if (isGetMethode()) {
         $teamController = new TeamsController();
         $teamController->showTeam(intval($id));
         die();
-    }
-}
-
+    }*/
 echo "Route not Found";
-?>
+http_response_code(404);
 
-</body>
-</html>
+//}
+
