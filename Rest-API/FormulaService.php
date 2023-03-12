@@ -56,5 +56,17 @@ class FormulaService {
         ]);
     }
 
+    public function deleteDriver(int $id) {
+        $deleteDriver = $this->db->prepare("DELETE FROM drivers WHERE id=:id");
+        $deleteDriver->execute([
+            'id'=>$id
+        ]);
+
+        $updateIds = $this->db->prepare("UPDATE drivers SET id= id - 1 WHERE id>=:id");
+        $updateIds->execute([
+            'id'=>$id
+        ]);
+    }
+
 }
 

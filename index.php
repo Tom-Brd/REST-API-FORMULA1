@@ -35,6 +35,7 @@ if (isPath("/drivers/create")) {
         $requestBody = file_get_contents('php://input');
         $requestDto = json_decode($requestBody, true);
         $formulaService->createDriver($requestDto);
+        echo "Driver created";
         die();
     } else http_response_code(405);
 }
@@ -42,6 +43,8 @@ if (isPath("/drivers/create")) {
 if (isPath("/drivers/delete/:delete")) {
     if (isDeleteMethod()) {
         $id = extractPathParam();
+        $formulaService->deleteDriver($id);
+        echo "Driver deleted";
         die();
     } else http_response_code(405);
 }
