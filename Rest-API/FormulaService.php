@@ -76,5 +76,29 @@ class FormulaService {
         ]);
     }
 
+    public function updateCircuit(int $id, array $requestDto) {
+        $updateDriver = $this->db->prepare("UPDATE circuits SET 
+               name=:name, country=:country, length=:length, number_of_turns=:number_of_turns WHERE id=:id");
+        $updateDriver->execute([
+            'name'=>$requestDto['name'],
+            'country'=>$requestDto['country'],
+            'length'=>$requestDto['length'],
+            'number_of_turns'=>$requestDto['number_of_turns'],
+            'id'=>$id
+        ]);
+    }
+
+    public function updateTeam(int $id, array $requestDto) {
+        $updateDriver = $this->db->prepare("UPDATE teams SET 
+               name=:name, country=:country, team_principal=:team_principal, year_of_creation=:year_of_creation WHERE id=:id");
+        $updateDriver->execute([
+            'name'=>$requestDto['name'],
+            'country'=>$requestDto['country'],
+            'team_principal'=>$requestDto['team_principal'],
+            'year_of_creation'=>$requestDto['year_of_creation'],
+            'id'=>$id
+        ]);
+    }
+
 }
 
