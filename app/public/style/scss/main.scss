@@ -9,6 +9,7 @@ $color-dark: #111;
 }
 
 body {
+  background-color: red;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -132,28 +133,28 @@ body {
 }
 
 .api {
-  background-color: red;
   &__table {
     border-collapse: collapse;
     width: 100%;
 
-    th, td {
-      border: 1px solid $color-dark;
-      padding: .8rem;
+    th,
+    td {
+      border: 1px solid black;
+      padding: 8px;
       text-align: left;
     }
 
     th {
       background-color: #4CAF50;
       color: white;
-    };
+    }
 
     tr:nth-child(even) {
       background-color: #f2f2f2;
-
     }
   }
 }
+
 
 
 @keyframes moveInLeft {
