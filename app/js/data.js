@@ -33,8 +33,8 @@ function getAllData(dataType) {
             allData.forEach(singleData => {
                 handleData(dataType, singleData)
             })
-        .catch(error => console.error(error));
     })
+        .catch(error => console.error(error));
 }
 
 
@@ -45,6 +45,23 @@ function getSingleData(dataType, dataId) {
             handleData(dataType, data)
         })
         .catch(error => console.error(error));
+}
+
+function deleteData(dataType, dataId) {
+    fetch('http://localhost:8888/REST-API-FORMULA1/' + dataType + '/delete/' + dataId, {
+        mode: 'cors',
+        method: 'DELETE'
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('There has been an error');
+            }
+        })
+        .then(data => console.log(data))
+        .catch(error => {
+            console.error('There was a problem with the delete HTTP call: ', error);
+        })
+    location.reload();
 }
 
 function createDriver(driver) {
@@ -65,6 +82,12 @@ function createDriver(driver) {
     let driverListCarNumber = document.createElement('td');
     driverListCarNumber.textContent = `${driver.carNumber}`;
     driversList.appendChild(driverListCarNumber);
+    let driverListDelete = document.createElement('td');
+    let driverListDeleteBalise = document.createElement('a');
+    driverListDeleteBalise.href = "javascript:deleteData(\"drivers\", " + driver.id + ");";
+    driverListDeleteBalise.textContent = "DELETE";
+    driverListDelete.appendChild(driverListDeleteBalise);
+    driversList.appendChild(driverListDelete);
     driversTable.appendChild(driversList);
 }
 
@@ -83,6 +106,12 @@ function createCircuit(circuit) {
     let circuitListNumberOfTurns = document.createElement('td');
     circuitListNumberOfTurns.textContent = `${circuit.numberOfTurns}`;
     circuitsList.appendChild(circuitListNumberOfTurns);
+    let circuitListDelete = document.createElement('td');
+    let circuitListDeleteBalise = document.createElement('a');
+    circuitListDeleteBalise.href = "javascript:deleteData(\"circuits\", " + circuit.id + ");";
+    circuitListDeleteBalise.textContent = "DELETE";
+    circuitListDelete.appendChild(circuitListDeleteBalise);
+    circuitsList.appendChild(circuitListDelete);
     circuitsTable.appendChild(circuitsList);
 }
 
@@ -101,5 +130,11 @@ function createTeam(team) {
     let teamListYearOfCreation = document.createElement('td');
     teamListYearOfCreation.textContent = `${team.yearOfCreation}`;
     teamsList.appendChild(teamListYearOfCreation);
+    let teamListDelete = document.createElement('td');
+    let teamListDeleteBalise = document.createElement('a');
+    teamListDeleteBalise.href = "javascript:deleteData(\"teams\", " + team.id + ");";
+    teamListDeleteBalise.textContent = "DELETE";
+    teamListDelete.appendChild(teamListDeleteBalise);
+    teamsList.appendChild(teamListDelete);
     teamsTable.appendChild(teamsList);
 }
